@@ -16,6 +16,9 @@
         #output {
             width: 50%;
         }
+        #error {
+            color: darkred;
+        }
     </style>
     <script type="text/javascript">
         window.onunload = function (e) {
@@ -44,8 +47,8 @@
             <br />
             <asp:FileUpload ID="image" runat="server" /><br />
             <asp:Button ID="start" runat="server" Text="Start!" /><br />
-            <asp:Image ID="output" runat="server" />
-
+            <asp:Image ID="output" runat="server" /><br />
+            <asp:Label ID="error" runat="server" Text=""></asp:Label>
         </div>
     </form>
 </body>

@@ -45,17 +45,25 @@ public partial class index : System.Web.UI.Page
     }
     private void Start_Click(object sender, EventArgs e)
     {
-        System.Drawing.Bitmap bm = new System.Drawing.Bitmap(image.FileContent);
-        Bitmap newBitmap = new Bitmap(bm.Width, bm.Height);
-        Graphics graphics = Graphics.FromImage(newBitmap);
-        graphics.DrawImage(bm, 0, 0, newBitmap.Width,newBitmap.Height);
-        System.Drawing.Bitmap logo = new System.Drawing.Bitmap(Server.MapPath("/")+"logo.png");
-        float mult = 0.05f / ((float)logo.Height / (float)newBitmap.Height);
-        mult = float.IsInfinity(mult) ? 1 : mult;
-        graphics.DrawImage(logo, newBitmap.Width - logo.Width * mult-1, newBitmap.Height - logo.Height * mult-1, logo.Width * mult, logo.Height * mult);
-        newBitmap.Save(uniquePath());
-        output.ImageUrl = uniqueName();
-        
+        try
+        {
+
+            System.Drawing.Bitmap bm = new System.Drawing.Bitmap(image.FileContent);
+            Bitmap newBitmap = new Bitmap(bm.Width, bm.Height);
+            Graphics graphics = Graphics.FromImage(newBitmap);
+            graphics.DrawImage(bm, 0, 0, newBitmap.Width, newBitmap.Height);
+            System.Drawing.Bitmap logo = new System.Drawing.Bitmap(Server.MapPath("/") + "logo.png");
+            float mult = 0.05f / ((float)logo.Height / (float)newBitmap.Height);
+            mult = float.IsInfinity(mult) ? 1 : mult;
+            graphics.DrawImage(logo, newBitmap.Width - logo.Width * mult - 1, newBitmap.Height - logo.Height * mult - 1, logo.Width * mult, logo.Height * mult);
+            newBitmap.Save(uniquePath());
+            output.ImageUrl = uniqueName();
+            error.Text = "";
+        }
+        catch(Exception exc)
+        {
+            error.Text = "An error has occured... please use a different picture!";
+        }
 
     }
 }
