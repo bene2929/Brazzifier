@@ -53,7 +53,7 @@ public partial class index : System.Web.UI.Page
             Graphics graphics = Graphics.FromImage(newBitmap);
             graphics.DrawImage(bm, 0, 0, newBitmap.Width, newBitmap.Height);
             System.Drawing.Bitmap logo = new System.Drawing.Bitmap(Server.MapPath("/") + "logo.png");
-            float mult = 0.05f / ((float)logo.Height / (float)newBitmap.Height);
+            float mult = 0.08f / ((float)logo.Height / (float)newBitmap.Height);
             mult = float.IsInfinity(mult) ? 1 : mult;
             graphics.DrawImage(logo, newBitmap.Width - logo.Width * mult - 1, newBitmap.Height - logo.Height * mult - 1, logo.Width * mult, logo.Height * mult);
             newBitmap.Save(uniquePath());
